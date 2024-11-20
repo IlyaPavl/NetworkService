@@ -5,7 +5,31 @@
 //  Created by Илья Павлов on 31.10.2024.
 //
 
-struct API {
-    static let scheme = "https"
-    static let host = "restcountries.com"
+protocol HostProvider {
+    var scheme: String { get }
+    var host: String { get }
+}
+
+public enum APIHost: HostProvider {
+    case restCountries
+    
+    var scheme: String {
+        switch self {
+            case .restCountries:
+                return "https"
+        }
+    }
+    
+    var host: String {
+        switch self {
+            case .restCountries:
+                return "restcountries.com"
+        }
+    }
+}
+
+class HostFactory {
+    static func createHost(for apiHost: APIHost) -> HostProvider {
+        return apiHost
+    }
 }

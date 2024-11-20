@@ -33,4 +33,10 @@ public enum RequestType {
     case region
     case subregion
     case translation
+    case fields
+}
+
+public enum RuleAddingParams {
+    case addToUrl
+    case addToBody
 }
